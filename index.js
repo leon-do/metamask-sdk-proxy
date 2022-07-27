@@ -20,7 +20,7 @@ async function main() {
   const link = sdk.getUniversalLink();
   console.log({ link });
 
-  // call this to generate link
+  // once user scans QR, get accounts
   const accounts = await accountsPromise;
   console.log({ accounts });
 
