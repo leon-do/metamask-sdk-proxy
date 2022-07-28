@@ -10,6 +10,14 @@ or
 npm i file:./metamask-sdk-v0.0.2.tgz
 ```
 
+Install Dependencies
+
+```
+yarn
+or
+npm i
+```
+
 Run proxy
 
 ```
