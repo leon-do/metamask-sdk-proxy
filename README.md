@@ -16,7 +16,7 @@ Run proxy
 node index.js
 ```
 
-## HYP3R API Reference
+## Client API Reference
 
 https://documenter.getpostman.com/view/1292391/UzXNVdXn
 
