@@ -16,6 +16,10 @@ Run proxy
 node index.js
 ```
 
-## API References
+## HYP3R API Reference
+
+https://documenter.getpostman.com/view/1292391/UzXNVdXn
+
+## Metamask API References
 
 https://metamask.github.io/api-playground/api-documentation

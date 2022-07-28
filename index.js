@@ -1,18 +1,18 @@
 import MetaMaskSDK from "@metamask/sdk";
-import { ethers } from "ethers";
+import http from "http"; // use any server framework
 
 const sdk = new MetaMaskSDK({
   dappMetadata: {
     name: "HyperPlay",
     url: "https://hyperplay.com",
   },
-  shouldShimWeb3: false, // do not use window.web3
+  shouldShimWeb3: false, // disable window.web3
 });
 
 const provider = sdk.getProvider();
 
-main();
-async function main() {
+// initialize wallet
+(async function wallet() {
   // call this to generate link
   const accountsPromise = provider.request({ method: "eth_requestAccounts" });
 
@@ -23,14 +23,27 @@ async function main() {
   // once user scans QR, get accounts
   const accounts = await accountsPromise;
   console.log({ accounts });
+})();
 
-  // balance is in hex: https://metamask.github.io/api-playground/api-documentation/#eth_getBalance
-  const balance = await provider.request({ method: "eth_getBalance", params: [accounts[0]] });
-  console.log({ balance });
-  // convert hex to wei (smallest unit)
-  const wei = parseInt(balance);
-  console.log({ wei });
-  // convert wei to ether
-  const ether = ethers.utils.formatEther(balance);
-  console.log({ ether });
-}
+// proxy server
+http
+  .createServer({}, function (req, res) {
+    // set response as json
+    res.setHeader("Content-Type", "application/json");
+    // get request body
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+    req.on("end", async () => {
+      try {
+        // send request body to metamask
+        const response = await provider.request(JSON.parse(body));
+        // get response and send back to client/game
+        res.end(JSON.stringify({ response }));
+      } catch (error) {
+        res.end(JSON.stringify({ error }));
+      }
+    });
+  })
+  .listen(8080);
