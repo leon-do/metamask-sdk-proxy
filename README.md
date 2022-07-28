@@ -1,5 +1,11 @@
 # Metamask SDK Proxy
 
+## Demo
+
+https://youtu.be/m1G0OVkurEY
+
+![](https://user-images.githubusercontent.com/19412160/181422694-14fb751f-2165-4f6e-90e6-2bcb1c4697f9.png)
+
 ## Setup
 
 Install SDK
