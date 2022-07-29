@@ -28,6 +28,7 @@ const provider = sdk.getProvider();
 // proxy server
 http
   .createServer({}, function (req, res) {
+    if (!provider.isConnected()) return res.end("MetaMask not connected");
     // set response as json
     res.setHeader("Content-Type", "application/json");
     // get request body
