@@ -4,7 +4,7 @@ import http from "http"; // use any server framework
 const sdk = new MetaMaskSDK({
   dappMetadata: {
     name: "HyperPlay",
-    url: "https://hyperplay.com",
+    url: "https://hyperplay.gg",
   },
   shouldShimWeb3: false, // disable window.web3
 });
